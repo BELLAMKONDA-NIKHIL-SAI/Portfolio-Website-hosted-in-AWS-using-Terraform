@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nikhil Sai Bellamkonda | Cloud Developer Portfolio</title>
+  <meta name="description" content="Nikhil Sai Bellamkonda — Cloud Developer portfolio: bio, career, experience, projects, certifications." />
+
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --text:#EAF0FF;
+      --muted:rgba(234,240,255,.72);
+      --faint:rgba(234,240,255,.55);
+
+      --a:#7C3AED;
+      --b:#22D3EE;
+      --c:#34D399;
+      --d:#F59E0B;
+
+      --ring: 0 0 0 2px rgba(34,211,238,.22), 0 0 0 6px rgba(124,58,237,.14);
+      --shadow2: 0 12px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+
+      --max: 1100px;
+      --pad2: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 12% 12%, rgba(124,58,237,.25), transparent 55%),
+        radial-gradient(900px 600px at 75% 25%, rgba(34,211,238,.22), transparent 55%),
+        radial-gradient(900px 600px at 65% 85%, rgba(52,211,153,.12), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+      min-height:100vh;
+    }
+
+    .fx{
+      pointer-events:none;
+      position:fixed; inset:0;
+      background:
+        radial-gradient(800px 500px at 50% 30%, rgba(245,158,11,.08), transparent 60%),
+        radial-gradient(900px 600px at 20% 70%, rgba(52,211,153,.08), transparent 60%),
+        radial-gradient(900px 600px at 80% 70%, rgba(34,211,238,.08), transparent 60%);
+      mix-blend-mode: screen;
+      opacity:.9;
+      animation: sweep 14s ease-in-out infinite alternate;
+    }
+    .grain{
+      pointer-events:none;
+      position:fixed; inset:-40%;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+      opacity:.18;
+      transform: translateZ(0);
+      animation: grain 7s steps(6) infinite;
+      mix-blend-mode: overlay;
+    }
+    @keyframes sweep{
+      0%{ transform: translate3d(-1.2%, -1.1%, 0) scale(1.02); }
+      100%{ transform: translate3d(1.2%, 1.1%, 0) scale(1.02); }
+    }
+    @keyframes grain{
+      0%{ transform: translate(0,0); }
+      20%{ transform: translate(-5%, 3%); }
+      40%{ transform: translate(4%, -5%); }
+      60%{ transform: translate(-3%, -2%); }
+      80%{ transform: translate(6%, 4%); }
+      100%{ transform: translate(0,0); }
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding: 28px 18px 64px; }
+
+    .nav{
+      position:sticky; top:0;
+      z-index:10;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(7,10,18,.78), rgba(7,10,18,.42));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav .inner{
+      max-width:var(--max);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 18px;
+      gap: 12px;
+    }
+    .brand{ display:flex; align-items:center; gap:12px; min-width: 240px; }
+    .logo{
+      width:36px; height:36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124,58,237,.9), rgba(34,211,238,.85));
+      box-shadow: 0 10px 30px rgba(124,58,237,.24);
+      position:relative; overflow:hidden;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.42), transparent 55%);
+      transform: rotate(18deg);
+      animation: shimmer 4.6s ease-in-out infinite;
+      opacity:.9;
+    }
+    @keyframes shimmer{
+      0%{ transform: translate(-8%, -8%) rotate(18deg); opacity:.7; }
+      100%{ transform: translate(8%, 10%) rotate(18deg); opacity:.95; }
+    }
+    .brand .t{ display:flex; flex-direction:column; line-height:1.05; }
+    .brand .t strong{ font-size:14px; letter-spacing:.2px; }
+    .brand .t span{ font-size:12px; color:var(--muted); margin-top:3px; }
+
+    .navlinks{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      justify-content:center;
+    }
+    .pill{
+      font-size:13px;
+      padding: 9px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      color: var(--muted);
+    }
+    .pill:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(34,211,238,.28);
+      color: var(--text);
+    }
+    .pill.active{
+      background: linear-gradient(135deg, rgba(124,58,237,.22), rgba(34,211,238,.16));
+      border-color: rgba(34,211,238,.32);
+      color: var(--text);
+      box-shadow: var(--ring);
+    }
+
+    .cta{
+      display:flex; gap:10px; align-items:center;
+      min-width: 260px; justify-content:flex-end;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.18);
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(124,58,237,.85), rgba(34,211,238,.55));
+      border-color: rgba(34,211,238,.35);
+    }
+
+    .hero{
+      padding: 42px 0 18px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      padding: var(--pad2);
+      position:relative; overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(500px 260px at 20% 20%, rgba(124,58,237,.20), transparent 60%),
+        radial-gradient(460px 260px at 85% 25%, rgba(34,211,238,.16), transparent 60%),
+        radial-gradient(420px 220px at 55% 90%, rgba(52,211,153,.10), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .card > *{ position:relative; z-index:1; }
+
+    .headline{
+      font-size: 36px;
+      line-height: 1.08;
+      margin: 0 0 10px;
+      letter-spacing: .2px;
+    }
+    .sub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 70ch;
+    }
+    .badgeRow{ display:flex; flex-wrap:wrap; gap:8px; margin: 14px 0 2px; }
+    .badge{
+      font-size: 12px;
+      color: var(--text);
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+    }
+    .badge.accent{
+      background: linear-gradient(135deg, rgba(124,58,237,.20), rgba(34,211,238,.12));
+      border-color: rgba(34,211,238,.22);
+    }
+
+    .mini{ display:flex; flex-direction:column; gap:12px; }
+    .statGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    .stat{
+      border-radius: var(--radius2);
+      padding: 12px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .stat:hover{
+      transform: translateY(-2px);
+      border-color: rgba(34,211,238,.26);
+    }
+    .stat strong{ display:block; font-size: 18px; letter-spacing:.2px; }
+    .stat span{ color: var(--muted); font-size:12px; }
+
+    section{
+      margin-top: 18px;
+      padding-top: 20px;
+      scroll-margin-top: 90px;
+    }
+    .sectionTitle{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 14px;
+      margin: 10px 0 10px;
+    }
+    .sectionTitle h2{ margin:0; font-size: 18px; letter-spacing:.2px; }
+    .sectionTitle p{ margin:0; color: var(--faint); font-size: 13px; max-width: 60ch; text-align:right; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, minmax(0,1fr));
+      gap: 12px;
+    }
+    .col-6{ grid-column: span 6; }
+    .col-7{ grid-column: span 7; }
+    .col-5{ grid-column: span 5; }
+    .col-12{ grid-column: span 12; }
+
+    .item{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius2);
+      padding: 14px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.18);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      position:relative; overflow:hidden;
+    }
+    .item:hover{
+      transform: translateY(-2px);
+      border-color: rgba(34,211,238,.22);
+      background: rgba(255,255,255,.06);
+    }
+    .item h3{ margin: 0 0 6px; font-size: 15px; letter-spacing:.15px; }
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      align-items:center;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .dot{ width:4px; height:4px; border-radius:99px; background: rgba(234,240,255,.35); display:inline-block; }
+    .item ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height:1.55;
+      font-size: 13px;
+    }
+    .item li{ margin: 6px 0; }
+
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 12px; }
+    .chip{
+      font-size: 12px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+
+    .timeline{ position:relative; padding-left: 18px; }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left: 6px; top: 8px; bottom: 8px;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(34,211,238,.35), rgba(124,58,237,.22), rgba(52,211,153,.18));
+      border-radius: 99px;
+    }
+    .tItem{ position:relative; margin: 0 0 12px; }
+    .tItem::before{
+      content:"";
+      position:absolute;
+      left: -18px; top: 14px;
+      width: 12px; height: 12px;
+      border-radius: 99px;
+      background: linear-gradient(135deg, rgba(34,211,238,.9), rgba(124,58,237,.75));
+      box-shadow: 0 0 0 3px rgba(7,10,18,.9), 0 0 0 6px rgba(34,211,238,.10);
+    }
+
+    footer{
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: var(--faint);
+      font-size: 12px;
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
+
+    .reveal{
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.on{ opacity:1; transform: translateY(0); }
+
+    @media (max-width: 980px){
+      .hero{ grid-template-columns: 1fr; }
+      .cta{ min-width: unset; }
+    }
+    @media (max-width: 760px){
+      .headline{ font-size: 30px; }
+      .col-6,.col-7,.col-5{ grid-column: span 12; }
+      .sectionTitle{ align-items:flex-start; flex-direction:column; }
+      .sectionTitle p{ text-align:left; }
+      .navlinks{ display:none; }
+    }
+
+    .icon{
+      width: 14px; height: 14px;
+      display:inline-block;
+      border-radius: 4px;
+      background: rgba(255,255,255,.16);
+      position:relative; overflow:hidden;
+    }
+    .icon::after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 55%);
+      transform: rotate(25deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="fx"></div>
+  <div class="grain"></div>
+
+  <header class="nav">
+    <div class="inner">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="t">
+          <strong>Nikhil Sai Bellamkonda</strong>
+          <span>Cloud Developer • AWS • Terraform • Linux</span>
+        </div>
+      </a>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a class="pill" href="#about">Bio</a>
+        <a class="pill" href="#career">Career</a>
+        <a class="pill" href="#experience">Experience</a>
+        <a class="pill" href="#projects">Projects</a>
+        <a class="pill" href="#certs">Certifications</a>
+        <a class="pill" href="#skills">Skills</a>
+        <a class="pill" href="#contact">Contact</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn" href="https://www.linkedin.com/in/nikhil-sai-bellamkonda-a61a74192" target="_blank" rel="noreferrer">
+          <span class="icon" aria-hidden="true"></span> LinkedIn
+        </a>
+        <a class="btn primary" href="#" onclick="alert('Add a hosted resume link (Google Drive/Dropbox/GitHub Pages)'); return false;">
+          <span class="icon" aria-hidden="true"></span> Resume
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="top">
+    <div class="hero">
+      <div class="card reveal">
+        <h1 class="headline">
+          Building <span style="color: rgba(34,211,238,.95);">secure AWS systems</span> with
+          <span style="color: rgba(124,58,237,.95);">automation-first</span> delivery.
+        </h1>
+
+        <p class="sub">
+          AWS Certified Solutions Architect – Associate and Cloud Practitioner with experience designing secure AWS infrastructure,
+          automating deployments, and building scalable microservices. Proficient in Python, Java, and Linux, with a strong foundation
+          in DevOps, cloud security, and distributed systems.
+        </p>
+
+        <div class="badgeRow" aria-label="Key highlights">
+          <span class="badge accent">AWS • Terraform • CloudFormation</span>
+          <span class="badge">Python • Java • Bash</span>
+          <span class="badge">Microservices • Distributed Systems</span>
+          <span class="badge">CI/CD • CloudWatch • Monitoring</span>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
+          <a class="btn primary" href="#projects"><span class="icon" aria-hidden="true"></span> Featured Projects</a>
+          <a class="btn" href="#contact"><span class="icon" aria-hidden="true"></span> Contact</a>
+        </div>
+      </div>
+
+      <aside class="mini">
+        <div class="card reveal">
+          <div class="sectionTitle" style="margin:0 0 10px;">
+            <h2>Quick Snapshot</h2>
+            <p>From your latest resume</p>
+          </div>
+
+          <div class="statGrid">
+            <div class="stat">
+              <strong>2+ yrs</strong>
+              <span>Cloud + Dev work</span>
+            </div>
+            <div class="stat">
+              <strong>AWS</strong>
+              <span>Infra + monitoring</span>
+            </div>
+            <div class="stat">
+              <strong>IaC</strong>
+              <span>Terraform / CFN</span>
+            </div>
+            <div class="stat">
+              <strong>2</strong>
+              <span>AWS certs</span>
+            </div>
+          </div>
+
+          <div class="chips" style="margin-top:12px;">
+            <span class="chip">Paradise, NL, Canada</span>
+            <span class="chip">Open to: Cloud Developer</span>
+            <span class="chip">Email: bellamkondanikhilsai@gmail.com</span>
+          </div>
+        </div>
+
+        <div class="item reveal">
+          <h3>Core Strengths</h3>
+          <div class="meta">
+            <span>Security + reliability</span><span class="dot"></span><span>Automation</span>
+          </div>
+          <ul>
+            <li>Secure AWS foundations: IAM least privilege, VPC patterns, monitoring.</li>
+            <li>Repeatable delivery with Terraform/CloudFormation and CI/CD pipelines.</li>
+            <li>Backend services and automation in Python/Java on Linux environments.</li>
+            <li>Operational troubleshooting using logs/metrics and performance tuning.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <section id="about">
+      <div class="sectionTitle">
+        <h2>Bio Data</h2>
+        <p>Fast-scanning details for recruiters and hiring managers.</p>
+      </div>
+
+      <div class="grid">
+        <div class="item col-7 reveal">
+          <h3>Nikhil Sai Bellamkonda</h3>
+          <div class="meta">
+            <span>AWS Certified Solutions Architect – Associate</span><span class="dot"></span><span>Cloud Developer</span>
+          </div>
+
+          <p style="margin:0; color:var(--muted); line-height:1.65; font-size:13px;">
+            I design secure AWS infrastructure and build scalable services with an automation-first mindset. My work includes deploying and
+            maintaining AWS resources (EC2, S3, IAM, VPC, CloudWatch), implementing Infrastructure as Code with Terraform/CloudFormation,
+            and shipping backend services in Python and Java.
+          </p>
+
+          <div class="chips">
+            <span class="chip">Address: 42 Lanark Drive, Paradise, NL (A1L 3Y5)</span>
+            <span class="chip">Phone: +1 709-341-7918</span>
+            <span class="chip">Email: bellamkondanikhilsai@gmail.com</span>
+          </div>
+        </div>
+
+        <div class="item col-5 reveal">
+          <h3>Top AWS Focus</h3>
+          <div class="meta">
+            <span>Design</span><span class="dot"></span><span>Security</span><span class="dot"></span><span>Ops</span>
+          </div>
+          <ul>
+            <li><strong>Compute & Storage:</strong> EC2, S3, Lambda</li>
+            <li><strong>Networking:</strong> VPC (security groups, subnets)</li>
+            <li><strong>Access:</strong> IAM (least privilege)</li>
+            <li><strong>Observability:</strong> CloudWatch (logs, metrics, dashboards)</li>
+            <li><strong>Delivery:</strong> Terraform, CloudFormation, CI/CD</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="career">
+      <div class="sectionTitle">
+        <h2>Career</h2>
+        <p>What you focus on and the kind of problems you solve.</p>
+      </div>
+
+      <div class="grid">
+        <div class="item col-12 reveal">
+          <h3>Career Narrative</h3>
+          <div class="meta">
+            <span>AWS + IaC</span><span class="dot"></span><span>Microservices</span><span class="dot"></span><span>Reliability</span>
+          </div>
+          <p style="margin:0; color:var(--muted); line-height:1.65; font-size:13px;">
+            I focus on building secure, repeatable cloud environments and the services that run on them. I enjoy improving delivery speed
+            with CI/CD and Infrastructure as Code, while keeping systems observable and production-ready through monitoring and performance
+            optimization. I’m looking for a Cloud Developer role where I can keep shipping reliable AWS solutions and strengthen security and automation.
+          </p>
+          <div class="chips">
+            <span class="chip">Focus: Multi-environment deployments (Dev/Test/Prod)</span>
+            <span class="chip">Focus: Monitoring + performance optimization</span>
+            <span class="chip">Focus: Microservices + distributed systems fundamentals</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="sectionTitle">
+        <h2>Work Experience</h2>
+        <p>Impact-focused highlights from your latest resume.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="tItem item reveal">
+          <h3>Software Developer Intern — Backyard Inc. (AI-Powered E-Commerce Platform)</h3>
+          <div class="meta">
+            <span>Aug 2025 – Sep 2025</span><span class="dot"></span><span>St. John’s, NL, Canada</span><span class="dot"></span><span>AWS</span>
+          </div>
+          <ul>
+            <li>Designed and supported cloud-based application components on AWS, focusing on scalability, security, and operational reliability.</li>
+            <li>Developed backend services and automation scripts using Python and Java, streamlining application workflows and deployment processes.</li>
+            <li>Assisted in building and maintaining CI/CD pipelines to automate builds, testing, and cloud deployments across development environments.</li>
+            <li>Worked in Linux-based environments to troubleshoot application issues, manage system configurations, and support basic networking and virtualization tasks.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">AWS</span><span class="chip">Python</span><span class="chip">Java</span><span class="chip">CI/CD</span><span class="chip">Linux</span>
+          </div>
+        </div>
+
+        <div class="tItem item reveal">
+          <h3>Software Developer — RM Expert Solutions</h3>
+          <div class="meta">
+            <span>May 2021 – Aug 2023</span><span class="dot"></span><span>Hyderabad, India</span><span class="dot"></span><span>AWS + IaC</span>
+          </div>
+          <ul>
+            <li>Designed, deployed, and maintained secure AWS cloud infrastructure using EC2, S3, IAM, VPC, and CloudWatch to support cloud-native applications.</li>
+            <li>Implemented Infrastructure as Code using Terraform and CloudFormation concepts to automate provisioning and ensure consistent multi-environment deployments.</li>
+            <li>Built and maintained CI/CD pipelines to automate application builds, testing, and deployments, improving release reliability and reducing manual intervention.</li>
+            <li>Developed cloud-based services and automation scripts using Python, Java, and Bash to support scalable application operations.</li>
+            <li>Collaborated with software engineering and product teams to deliver high-performance, secure features aligned with business requirements.</li>
+            <li>Designed and supported microservices-oriented architectures, enabling independent service deployment and improved system scalability.</li>
+            <li>Monitored application and infrastructure health using AWS monitoring tools, analyzed logs and metrics, and implemented performance and reliability improvements.</li>
+            <li>Applied cloud security best practices including IAM least-privilege access, secure networking, and environment isolation across accounts.</li>
+            <li>Worked extensively in Linux environments, handling system configuration, process management, virtualization concepts, and basic network administration.</li>
+            <li>Stayed current with AWS services and cloud engineering best practices to continuously improve infrastructure design and operational efficiency.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Terraform</span><span class="chip">CloudFormation</span><span class="chip">CloudWatch</span><span class="chip">Microservices</span><span class="chip">Security</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="sectionTitle">
+        <h2>Projects</h2>
+        <p>Selected projects from your latest resume.</p>
+      </div>
+
+      <div class="grid">
+        <div class="item col-6 reveal">
+          <h3>Fraud Detection using ML and AWS</h3>
+          <div class="meta">
+            <span>Sep 2023 – Jan 2024</span><span class="dot"></span><span>AWS-hosted app</span><span class="dot"></span><span>(GitHub)</span>
+          </div>
+          <ul>
+            <li>Designed and deployed a scalable AWS-hosted application supporting 1000+ prediction requests/day with secure cloud configurations.</li>
+            <li>Implemented a microservices-based architecture that improved system scalability and reduced deployment coupling by 40%.</li>
+            <li>Built automated CI/CD pipelines that reduced deployment time by 50% and minimized manual release errors.</li>
+            <li>Optimized API performance and infrastructure monitoring, improving response times by 25% and system reliability.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">AWS</span><span class="chip">Microservices</span><span class="chip">CI/CD</span><span class="chip">Monitoring</span>
+          </div>
+          <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
+            <a class="btn" href="#" onclick="alert('Add your Fraud Detection GitHub repo link'); return false;"><span class="icon" aria-hidden="true"></span> GitHub</a>
+          </div>
+        </div>
+
+        <div class="item col-6 reveal">
+          <h3>Lung Cancer Detection with CT Scan Images</h3>
+          <div class="meta">
+            <span>Apr 2025</span><span class="dot"></span><span>CNN pipeline</span><span class="dot"></span><span>(GitHub)</span>
+          </div>
+          <ul>
+            <li>Developed an end-to-end CNN-based image classification pipeline achieving 90%+ model accuracy on validation data.</li>
+            <li>Designed cloud-ready preprocessing and training workflows that reduced experiment turnaround time by 35%.</li>
+            <li>Automated model training and evaluation using Python, improving reproducibility and reducing manual effort by 40%.</li>
+            <li>Applied distributed workflow and monitoring concepts to support scalable model training and reliable execution.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">Deep Learning</span><span class="chip">Workflows</span><span class="chip">Monitoring</span>
+          </div>
+          <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
+            <a class="btn" href="#" onclick="alert('Add your Lung Cancer GitHub repo link'); return false;"><span class="icon" aria-hidden="true"></span> GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certs">
+      <div class="sectionTitle">
+        <h2>Certifications</h2>
+        <p>From your latest resume.</p>
+      </div>
+
+      <div class="grid">
+        <div class="item col-6 reveal">
+          <h3>AWS Certified Solutions Architect – Associate</h3>
+          <div class="meta">
+            <span>Credential</span><span class="dot"></span><span>Dec 2025</span>
+          </div>
+          <ul>
+            <li>Designing secure, resilient, and cost-optimized AWS architectures.</li>
+          </ul>
+        </div>
+
+        <div class="item col-6 reveal">
+          <h3>AWS Certified Cloud Practitioner</h3>
+          <div class="meta">
+            <span>Credential</span><span class="dot"></span><span>Jul 2025</span>
+          </div>
+          <ul>
+            <li>AWS fundamentals, security basics, and pricing concepts.</li>
+          </ul>
+        </div>
+
+        <div class="item col-6 reveal">
+          <h3>Professional Skills Development Program</h3>
+          <div class="meta">
+            <span>Credential</span><span class="dot"></span><span>Sep 2024</span>
+          </div>
+          <ul>
+            <li>Professional communication and workplace readiness.</li>
+          </ul>
+        </div>
+
+        <div class="item col-6 reveal">
+          <h3>Data Structures and Algorithms</h3>
+          <div class="meta">
+            <span>Credential</span><span class="dot"></span><span>Sep 2021</span>
+          </div>
+          <ul>
+            <li>Core DSA concepts and Python-based problem solving.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="sectionTitle">
+        <h2>Skills</h2>
+        <p>Grouped to match cloud developer job descriptions.</p>
+      </div>
+
+      <div class="grid">
+        <div class="item col-6 reveal">
+          <h3>Cloud & DevOps</h3>
+          <ul>
+            <li>AWS: EC2, S3, IAM, VPC, CloudWatch, API Gateway</li>
+            <li>Infrastructure as Code: Terraform, CloudFormation</li>
+            <li>CI/CD pipelines, cloud monitoring, performance optimization</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">AWS</span><span class="chip">Terraform</span><span class="chip">CloudFormation</span><span class="chip">CloudWatch</span>
+          </div>
+        </div>
+
+        <div class="item col-6 reveal">
+          <h3>Programming & Systems</h3>
+          <ul>
+            <li>Python, Java, Bash, SQL, PostgreSQL</li>
+            <li>Microservices architecture, distributed systems fundamentals</li>
+            <li>Linux system basics, virtualization, networking fundamentals</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">Java</span><span class="chip">Linux</span><span class="chip">Microservices</span>
+          </div>
+        </div>
+
+        <div class="item col-12 reveal">
+          <h3>Tools & Platforms</h3>
+          <div class="meta">
+            <span>Delivery</span><span class="dot"></span><span>Collaboration</span>
+          </div>
+          <ul>
+            <li>Git, GitHub Actions, Docker, Agile development</li>
+            <li>Multi-account environments: Dev / Test / Prod</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="sectionTitle">
+        <h2>Contact</h2>
+        <p>Simple and recruiter-friendly.</p>
+      </div>
+
+      <div class="grid">
+        <div class="item col-7 reveal">
+          <h3>Let’s connect</h3>
+          <div class="meta"><span>Email is best</span><span class="dot"></span><span>Also on LinkedIn</span></div>
+          <ul>
+            <li><strong>Email:</strong> <a href="mailto:bellamkondanikhilsai@gmail.com" style="text-decoration:underline; text-underline-offset:3px;">bellamkondanikhilsai@gmail.com</a></li>
+            <li><strong>Phone:</strong> <a href="tel:+17093417918" style="text-decoration:underline; text-underline-offset:3px;">+1 709-341-7918</a></li>
+            <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nikhil-sai-bellamkonda-a61a74192" target="_blank" rel="noreferrer" style="text-decoration:underline; text-underline-offset:3px;">linkedin.com/in/nikhil-sai-bellamkonda-a61a74192</a></li>
+            <li><strong>Location:</strong> Paradise, NL, Canada</li>
+          </ul>
+        </div>
+
+        <div class="item col-5 reveal">
+          <h3>One-line pitch</h3>
+          <div class="meta"><span>Use this in outreach</span></div>
+          <p style="margin:0; color:var(--muted); line-height:1.65; font-size:13px;">
+            AWS-certified Cloud Developer building secure AWS infrastructure and scalable microservices with Terraform/CloudFormation, Python/Java, and strong Linux fundamentals.
+          </p>
+
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn primary" href="mailto:bellamkondanikhilsai@gmail.com?subject=Cloud%20Developer%20Opportunity&body=Hi%20Nikhil%2C%0A%0AI%20wanted%20to%20connect%20regarding%20a%20Cloud%20Developer%20opportunity.%0A%0AThanks%2C%0A">
+              <span class="icon" aria-hidden="true"></span> Email Me
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Nikhil Sai Bellamkonda</span>
+      <span>Single-file portfolio • HTML + CSS animations</span>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const revealEls = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) e.target.classList.add("on");
+    }, { threshold: 0.14 });
+    revealEls.forEach(el => io.observe(el));
+
+    const pills = Array.from(document.querySelectorAll(".navlinks .pill"));
+    const sections = ["about","career","experience","projects","certs","skills","contact"]
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    const navIO = new IntersectionObserver((entries) => {
+      const visible = entries.filter(e => e.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      const id = visible.target.id;
+      pills.forEach(p => p.classList.toggle("active", p.getAttribute("href") === "#" + id));
+    }, { threshold: [0.2, 0.35, 0.5] });
+
+    sections.forEach(s => navIO.observe(s));
+  </script>
+</body>
+</html>
